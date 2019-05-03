@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuKaSo.Mintos.Tests", "tests\LuKaSo.Mintos.Tests\LuKaSo.Mintos.Tests.csproj", "{29F23DD4-E34C-41CE-B457-2C511C613782}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuKaSo.Mintos", "src\LuKaSo.Mintos\LuKaSo.Mintos.csproj", "{E08DF3AC-0F60-4CD2-9ED3-92082A7DFBB0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6E4C3097-5D98-4093-A12C-1661AF04E319}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		docs\MintosResponces.md = docs\MintosResponces.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29F23DD4-E34C-41CE-B457-2C511C613782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F23DD4-E34C-41CE-B457-2C511C613782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F23DD4-E34C-41CE-B457-2C511C613782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F23DD4-E34C-41CE-B457-2C511C613782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E08DF3AC-0F60-4CD2-9ED3-92082A7DFBB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E08DF3AC-0F60-4CD2-9ED3-92082A7DFBB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E08DF3AC-0F60-4CD2-9ED3-92082A7DFBB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E08DF3AC-0F60-4CD2-9ED3-92082A7DFBB0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {712167B9-2DB3-4609-96B8-6ECFE5F4226A}
+	EndGlobalSection
+EndGlobal
