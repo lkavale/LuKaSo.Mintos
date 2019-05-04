@@ -1,0 +1,10 @@
+﻿
+// This file is used by Code Analysis to maintain SuppressMessage 
+// attributes that are applied to this project.
+// Project-level suppressions either have no target or are given 
+// a specific target and scoped to a namespace, type, member, etc.
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "Hardcoded part of URL, it could be change, but when it will happen it will probaly change more than the address", Scope = "member", Target = "~M:LuKaSo.Mintos.Api.MintosApi.#ctor(System.Net.Http.HttpClient)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "Hardcoded part of URL, it could be change, but when it will happen it will probaly change more than the address", Scope = "member", Target = "~M:LuKaSo.Mintos.Api.MintosApi.LoginAsync(LuKaSo.Mintos.Models.Login.User,System.String,System.Threading.CancellationToken)~System.Threading.Tasks.Task{System.String}")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "Hardcoded part of URL, it could be change, but when it will happen it will probaly change more than the address", Scope = "member", Target = "~M:LuKaSo.Mintos.Api.MintosApi.GetInvestorOverviewAsync(System.Threading.CancellationToken)~System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{LuKaSo.Mintos.Models.Investor.InvestorOverview}}")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "Extension metod for URL manipulation", Scope = "member", Target = "~M:LuKaSo.Mintos.Extensions.UriExtensions.Append(System.Uri,System.String)~System.Uri")]

@@ -32,7 +32,9 @@ namespace LuKaSo.Mintos.Tests.Production.Api
         public void LoginTokenOk()
         {
             var token = _mintosClient.GetCsrfTokenAsync().GetAwaiter().GetResult();
-            _mintosClient.LoginAsync(_mintosLoginOk, token).GetAwaiter().GetResult();
+            var logoutToken = _mintosClient.LoginAsync(_mintosLoginOk, token).GetAwaiter().GetResult();
+
+            Assert.AreEqual(43, logoutToken.Length);
         }
 
         [TestMethod]

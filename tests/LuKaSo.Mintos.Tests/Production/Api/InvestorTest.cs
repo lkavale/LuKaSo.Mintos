@@ -25,6 +25,8 @@ namespace LuKaSo.Mintos.Tests.Production.Api
             var token = _mintosClient.GetCsrfTokenAsync().GetAwaiter().GetResult();
             _mintosClient.LoginAsync(_mintosLogin, token).GetAwaiter().GetResult();
             var data = _mintosClient.GetInvestorOverviewAsync().GetAwaiter().GetResult().ToList();
+
+            Assert.IsTrue(data.Count > 0);
         }
 
         [TestMethod]

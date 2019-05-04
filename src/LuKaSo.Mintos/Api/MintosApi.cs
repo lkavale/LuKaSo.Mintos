@@ -9,10 +9,11 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace LuKaSo.Mintos.Api
 {
-    public partial class MintosApi : IMintosApi, IDisposable
+    public partial class MintosApi : IMintosApi
     {
         /// <summary>
         /// Mintos API base address
@@ -90,7 +91,7 @@ namespace LuKaSo.Mintos.Api
         /// <param name="csrfToken"></param>
         /// <param name="ct"></param>
         /// <returns></returns>
-        public async Task LoginAsync(User user, string csrfToken, CancellationToken ct = default(CancellationToken))
+        public async Task<string> LoginAsync(User user, string csrfToken, CancellationToken ct = default(CancellationToken))
         {
             using (var request = new HttpRequestMessage())
             {
@@ -109,14 +110,52 @@ namespace LuKaSo.Mintos.Api
                         throw new ServerErrorException(response);
                     }
 
-                    if(response.RequestMessage.RequestUri == _baseUrl.Append("/en/overview/"))
-                    { 
-                        var loginPage = new HtmlDocument();
-                        loginPage.Load(responseStream);
-                        return;
+                    if (response.RequestMessage.RequestUri == _baseUrl.Append("/en/overview/"))
+                    {
+                        var overviewPage = new HtmlDocument();
+                        overviewPage.Load(responseStream);
+
+                        var logoutA = overviewPage.DocumentNode.SelectSingleNode("//ul[@id='top-nav-helper']/li[@class='main-nav-logout-container head']/a");
+                        var logoutLink = logoutA.GetAttributeValue("href", "");
+                        var logoutData = HttpUtility.ParseQueryString(new Uri(logoutLink).Query);
+                        return logoutData["t"];
                     }
 
                     throw new BadLoginException(response, user);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Logout user
+        /// </summary>
+        /// <param name="ct"></param>
+        /// <returns></returns>
+        public async Task LogoutAsync(string logoutToken, CancellationToken ct = default(CancellationToken))
+        {
+            using (var request = new HttpRequestMessage())
+            {
+                request.RequestUri = _baseUrl
+                    .Append("en/logout")
+                    .AttachQueryParameters(new Dictionary<string, string>() {
+                        { "t", logoutToken }
+                    });
+                request.Method = new HttpMethod("GET");
+
+                using (var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct).ConfigureAwait(false))
+                using (var responseStream = await response.Content.ReadAsStreamAsync())
+                {
+                    if (response.StatusCode != HttpStatusCode.OK)
+                    {
+                        throw new ServerErrorException(response);
+                    }
+
+                    if (response.RequestMessage.RequestUri == _baseUrl.Append("en/logged-out/"))
+                    {
+                        return;
+                    }
+
+                    throw new ServerErrorException(response);
                 }
             }
         }
@@ -134,7 +173,7 @@ namespace LuKaSo.Mintos.Api
         /// Dispose
         /// </summary>
         /// <param name="disposing"></param>
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {

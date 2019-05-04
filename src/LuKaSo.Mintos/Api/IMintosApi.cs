@@ -1,12 +1,13 @@
 ﻿using LuKaSo.Mintos.Models.Investor;
 using LuKaSo.Mintos.Models.Login;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace LuKaSo.Mintos.Api
 {
-    public interface IMintosApi
+    public interface IMintosApi : IDisposable
     {
         /// <summary>
         /// Get CSRF token
@@ -22,7 +23,7 @@ namespace LuKaSo.Mintos.Api
         /// <param name="csrfToken"></param>
         /// <param name="ct"></param>
         /// <returns></returns>
-        Task LoginAsync(User user, string csrfToken, CancellationToken ct = default(CancellationToken));
+        Task<string> LoginAsync(User user, string csrfToken, CancellationToken ct = default(CancellationToken));
 
         /// <summary>
         /// Get investor overview
